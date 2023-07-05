@@ -256,6 +256,19 @@ describe('TodoServices.getTodos', () => {
         expect(Todo.findAll).toBeCalled();
     });
 
+    it('should call TodoModel.findAll with userId', () => {
+        // Arrange
+        const userId = 1;
+
+        // Act
+        TodoServices.getTodos(userId);
+
+        // Assert
+        expect(Todo.findAll.mock.calls[0][0]).toEqual({ where: { userId } });
+        expect(Todo.findAll).toBeCalledWith({ where: { userId } });
+        expect(Todo.findAll).toBeCalledTimes(1);
+    });
+
     it('should return a promise', () => {
         // Arrange
         Todo.findAll.mockReturnValue([]);

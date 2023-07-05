@@ -8,7 +8,6 @@ exports.createTodo = async (req, res, next) => {
 
         return res.status(201).json(result);
     } catch (err) {
-        console.log(err);
         next(err);
     }
 };
@@ -26,5 +25,30 @@ exports.getTodoById = async (req, res, next) => {
         return res.status(200).json(newTodo);
     } catch (err) {
         next(err);
+    }
+};
+
+exports.updateTodo = async (req, res, next) => {
+    try {
+        const id = req.params.todoId;
+        const updateTodo = req.body;
+        const updatedTodo = await TodoService.updateTodo(id, updateTodo);
+        if (!updatedTodo) {
+            return res.status(404).json({ message: 'todo not found' });
+        }
+
+        res.status(200).json({ message: 'updated todo' });
+    } catch (error) {
+        next(error);
+    }
+};
+
+exports.getAllTodos = async (req, res, next) => {
+    try {
+        const allTodo = await TodoService.getTodos();
+
+        res.status(200).json(allTodo);
+    } catch (error) {
+        next(error);
     }
 };

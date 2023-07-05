@@ -22,8 +22,12 @@ const getTodoById = async (id) => {
     return await Todo.findByPk(id);
 };
 
-const getTodos = async () => {
-    return await Todo.findAll();
+const getTodos = async (userId) => {
+    return await Todo.findAll({
+        where: {
+            userId: userId,
+        },
+    });
 };
 
 module.exports = {
