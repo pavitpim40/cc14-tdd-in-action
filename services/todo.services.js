@@ -1,12 +1,8 @@
 const { Todo } = require('../models');
 
 const createTodo = async (newTodo) => {
-    try {
-        let todo = await Todo.create(newTodo);
-        return todo;
-    } catch (err) {
-        throw new Error(err);
-    }
+    let todo = await Todo.create(newTodo);
+    return todo;
 };
 
 const deleteTodo = async (id) => {
