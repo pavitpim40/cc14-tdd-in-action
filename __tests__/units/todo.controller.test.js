@@ -222,6 +222,20 @@ describe('TodoController.getTodos', () => {
         expect(Todo.findAll).toBeCalledTimes(1);
     });
 
+    it("should call with user's id", async () => {
+        // Arrange
+        const userId = req.params.userId;
+        Todo.findAll.mockReturnValue([]);
+
+        // Act
+        await TodoController.getAllTodos(req, res, next);
+
+        // Assert
+        expect(Todo.findAll).toHaveBeenCalledWith({
+            where: { userId: userId },
+        });
+    });
+
     it('should return response with status 200 and all todos', async () => {
         // Arrange
         Todo.findAll.mockReturnValue(allTodos);

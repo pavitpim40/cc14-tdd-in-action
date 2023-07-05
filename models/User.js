@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
             },
             lastUpdatedPassword: DataTypes.DATE,
         },
-        { underscored: true, paranoid: true }
+        { underscored: true }
     );
 
     User.associate = function (models) {

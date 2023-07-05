@@ -4,6 +4,7 @@ const TodoService = require('../services/todo.services');
 exports.createTodo = async (req, res, next) => {
     try {
         const newTodo = req.body;
+
         const result = await TodoService.createTodo(newTodo);
 
         return res.status(201).json(result);
@@ -21,7 +22,6 @@ exports.getTodoById = async (req, res, next) => {
         if (!newTodo) {
             return res.status(404).send();
         }
-
         return res.status(200).json(newTodo);
     } catch (err) {
         next(err);
@@ -45,7 +45,8 @@ exports.updateTodo = async (req, res, next) => {
 
 exports.getAllTodos = async (req, res, next) => {
     try {
-        const allTodo = await TodoService.getTodos();
+        let userId = req.params.userId;
+        const allTodo = await TodoService.getTodos(userId);
 
         res.status(200).json(allTodo);
     } catch (error) {

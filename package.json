@@ -4,8 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "nodemon app.js",
-        "test": "jest --watchAll"
+        "start": "nodemon server.js",
+        "test": "jest --watchAll  --silent=true"
     },
     "keywords": [],
     "author": "",
@@ -14,7 +14,8 @@
         "express": "^4.18.2",
         "mysql2": "^3.4.5",
         "node-mocks-http": "^1.12.2",
-        "sequelize": "^6.32.1"
+        "sequelize": "^6.32.1",
+        "supertest": "^6.3.3"
     },
     "devDependencies": {
         "jest": "^29.6.0"
